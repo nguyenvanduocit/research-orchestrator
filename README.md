@@ -1,5 +1,7 @@
 # Research Orchestrator
 
+![Research Orchestrator](docs/thumbnail.png)
+
 A two-phase multi-agent research system that uses Claude to autonomously plan and execute rigorous research with quality controls, citations, and confidence scoring.
 
 ## What Is This?
