@@ -27,8 +27,8 @@ Claude Code Heavy gives Claude full control to orchestrate rigorous parallel res
 
 ```bash
 # Clone the repo
-git clone https://github.com/gtrusler/claude-code-heavy
-cd claude-code-heavy
+git clone https://github.com/nguyenvanduocit/research-orchestrator
+cd research-orchestrator
 
 # Make script executable
 chmod +x ccheavy.sh
@@ -114,8 +114,8 @@ graph TD
 ### Setup
 ```bash
 # Clone and setup
-git clone https://github.com/gtrusler/claude-code-heavy
-cd claude-code-heavy
+git clone https://github.com/nguyenvanduocit/research-orchestrator
+cd research-orchestrator
 ./setup.sh
 ```
 
@@ -338,8 +338,24 @@ MIT License with Commercial Attribution Requirement
 
 See [LICENSE](LICENSE) file for full details.
 
+## 🌟 Credits
+
+This project is forked from [claude-code-heavy](https://github.com/gtrusler/claude-code-heavy) by [Graydon Trusler](https://github.com/gtrusler).
+
+**Why a separate repository?**
+
+While the original project provides an excellent foundation, I created this fork because my workflow, development approach, and opinions on the architecture differ significantly from the author's vision. This independent repository allows me to:
+
+- Experiment with different architectural patterns
+- Implement features aligned with my specific use cases
+- Maintain a workflow that suits my development preferences
+- Make breaking changes without affecting the upstream project
+
+I'm grateful to Graydon for creating the original framework and making it open source. If you prefer the original implementation or want to contribute to the main project, please visit the [original repository](https://github.com/gtrusler/claude-code-heavy).
+
 ## 🙏 Acknowledgments
 
+- Original project: [claude-code-heavy](https://github.com/gtrusler/claude-code-heavy) by Graydon Trusler
 - Inspired by [make-it-heavy](https://github.com/Doriandarko/make-it-heavy) by Pietro Schirano
 - Inspired by Grok Heavy mode
 - Built on Claude Code by Anthropic
