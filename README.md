@@ -1,45 +1,75 @@
-# Claude Code Heavy
+# Claude Code Heavy v2.0
 
-A powerful multi-agent research system using Claude Code to deliver comprehensive, multi-perspective analysis through intelligent orchestration. Inspired by Grok's heavy mode and make-it-heavy.
+A powerful multi-agent research system with **quality controls**, **verification**, and **flexible depth settings**. Delivers rigorous, well-cited research with confidence scoring and cross-verification.
+
+## 🆕 What's New in v2.0
+
+- ✨ **Quality Controls**: Mandatory citations, confidence scoring (🟢🟡🔴), source verification
+- 📊 **Research Depth Modes**: Quick (~10min), Standard (~20min), Deep (~40min with verification)
+- ✅ **Verification Phase**: Deep mode includes cross-checking and contradiction detection
+- 🎯 **Focus Areas**: Optional targeting of specific research dimensions
+- 🏗️ **Simplified Architecture**: Removed git worktrees - cleaner, faster setup
+- 📚 **Enhanced Quality**: 3-5 sources per claim, explicit confidence levels, gap identification
+- 📝 **Task Tracking**: Integrated TodoWrite for progress visibility
 
 ## 🚀 What is Claude Code Heavy?
 
-Claude Code Heavy gives Claude full control to orchestrate parallel research:
-- 🧠 **Intelligent Planning**: Claude analyzes your query and creates the optimal research strategy
-- 🔀 **Parallel Research**: Claude decides how many agents to deploy (2-8 available)
-- 🎯 **Dynamic Adaptation**: Questions and roles are tailored to your specific query
-- 🔄 **Smart Synthesis**: Claude combines all findings into unified insights
+Claude Code Heavy gives Claude full control to orchestrate rigorous parallel research:
+- 🧠 **Intelligent Planning**: Claude analyzes your query and creates optimal research strategy
+- 🔀 **Parallel Research**: Claude decides assistant count and deploys them efficiently (2-8 available)
+- 🎯 **Dynamic Adaptation**: Questions and roles tailored to your specific query
+- ✅ **Quality Assurance**: Mandatory citations, confidence scoring, verification (deep mode)
+- 🔄 **Smart Synthesis**: Claude combines all findings with proper attribution
 - 🚙 **Interactive Mode**: Simple setup with powerful results
+- 📊 **Depth Control**: Choose quick/standard/deep based on research criticality
 
 ## 🎯 Quick Start
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/claude-code-heavy
+git clone https://github.com/gtrusler/claude-code-heavy
 cd claude-code-heavy
 
 # Make script executable
 chmod +x ccheavy.sh
 
-# Run interactively (recommended)
+# Run interactively (recommended) - now with depth and focus controls!
 ./ccheavy.sh
 
-# Or run with command line args
+# Or use command line with new options
 ./ccheavy.sh "How do we solve the global water supply issue?"
+
+# Quick research (10 mins)
+./ccheavy.sh "Latest trends in AI" markdown --depth=quick
+
+# Deep research with verification (40 mins)
+./ccheavy.sh "Should we migrate to Kubernetes?" markdown --depth=deep
+
+# Focused research on specific areas
+./ccheavy.sh "Future of renewable energy" markdown --focus=technology,economics,policy
 ```
 
 ## 🤔 Why This Approach?
 
 **Claude is the Intelligence**: Instead of hard-coding research patterns, we let Claude:
 - Analyze your query and determine the best approach
-- Decide how many research assistants are needed
+- Decide how many research assistants are needed (2-8)
 - Create specific, targeted research questions
 - Adapt the research strategy in real-time
+- **NEW**: Apply quality controls (citations, confidence scoring)
+- **NEW**: Cross-verify claims in deep mode
 
-**Pre-built Infrastructure**: The script simply:
-- Creates 8 research workspaces (worktrees)
-- Sets up output directories
-- Launches Claude with full orchestration control
+**Quality-First Design**: v2.0 adds rigorous research standards:
+- **Mandatory Citations**: Every claim links to source URL
+- **Confidence Scoring**: 🟢 HIGH, 🟡 MEDIUM, 🔴 LOW for all key findings
+- **Source Diversity**: 3-5 independent sources per major claim
+- **Verification Phase**: Deep mode includes cross-checking assistant
+- **Gap Identification**: Explicit acknowledgment of research limitations
+
+**Flexible Depth Control**: Choose the right level for your needs:
+- **Quick** (~10 min): 2-3 assistants, 300-500 words each - perfect for quick overviews
+- **Standard** (~20 min): 4-6 assistants, 500-1000 words - comprehensive research
+- **Deep** (~40 min): 6-8 assistants, 1000-2000 words + verification - critical decisions
 
 ## 📖 How It Works
 
@@ -94,38 +124,79 @@ cd claude-code-heavy
 ### Interactive Mode (Recommended)
 ```bash
 ./ccheavy.sh
-# Follow the prompts:
-# - Enter your research question
-# - Choose output format (markdown/text)
-# - Decide on dangerous mode (default: N)
-# - Confirm to proceed (default: Y)
-# - Optionally auto-launch Claude Code (default: Y)
+# Enhanced prompts guide you through:
+# 1. Research question - What you want to research
+# 2. Depth - quick/standard/deep (with time estimates)
+# 3. Focus areas - Optional targeting (e.g., "technology,economics,risks")
+# 4. Output format - markdown (default) or text
+# 5. Dangerous mode - Security flag (default: N)
+# 6. Confirmation - Review settings before starting
+# 7. Auto-launch - Optionally launch Claude Code immediately
 ```
 
 ### Command Line Mode
 ```bash
-# Basic usage
+# Basic usage (standard depth, ~20 min)
 ./ccheavy.sh "What are the latest advances in quantum computing?"
 
-# With text output
-./ccheavy.sh "Explain Docker containers" text
+# Quick research (~10 min)
+./ccheavy.sh "Latest trends in AI" markdown --depth=quick
 
-# YOLO mode
-./ccheavy.sh "Analyze my codebase" markdown --dangerous
+# Deep research with verification (~40 min)
+./ccheavy.sh "Should we adopt microservices?" markdown --depth=deep
+
+# Focused research on specific areas
+./ccheavy.sh "Blockchain technology" markdown --focus=security,scalability,energy
+
+# All options combined
+./ccheavy.sh "Cloud migration strategy" markdown --depth=deep --focus=costs,risks,timeline --dangerous
+```
+
+### Command Line Options
+
+| Option | Values | Description |
+|--------|--------|-------------|
+| `--depth` | quick/standard/deep | Research depth (default: standard) |
+| `--focus` | comma-separated areas | Target specific dimensions |
+| `--dangerous` | flag | Skip permission checks (use with caution) |
+
+### Depth Comparison
+
+| Depth | Time | Assistants | Words/Assistant | Verification | Best For |
+|-------|------|------------|-----------------|--------------|----------|
+| **quick** | ~10 min | 2-3 | 300-500 | ❌ | Quick overviews, initial scoping |
+| **standard** | ~20 min | 4-6 | 500-1000 | ❌ | Comprehensive research (default) |
+| **deep** | ~40 min | 6-8 | 1000-2000 | ✅ | Critical decisions, high-stakes analysis |
 ```
 
 ### Output Structure
 ```
 outputs/
-└── 2025-07-18-solve-global-water-crisis/
-    ├── orchestration-prompt.md    # Initial prompt for Claude
+└── 2025-11-10-solve-global-water-crisis/
+    ├── orchestration-prompt.md    # Enhanced prompt with quality standards
     ├── research-plan.md          # Claude's research strategy
     ├── assistants/
-    │   ├── ra-1-findings.md      # Assistant 1's research
-    │   ├── ra-2-findings.md      # Assistant 2's research
-    │   └── ...                   # Up to 8 assistants
-    └── final-analysis.md         # Synthesized results
+    │   ├── ra-1-findings.md      # Assistant 1 (with citations & confidence)
+    │   ├── ra-2-findings.md      # Assistant 2 (with citations & confidence)
+    │   ├── ra-N-findings.md      # Additional assistants
+    │   └── ra-verification.md    # Verification report (deep mode only)
+    └── final-analysis.md         # Synthesized results with bibliography
 ```
+
+### Quality Standards in Every Report
+
+Each assistant's findings now include:
+- **Inline Citations**: `[descriptive text](https://source-url)` for every claim
+- **Confidence Markers**: 🟢 HIGH, 🟡 MEDIUM, 🔴 LOW for key findings
+- **Sources Section**: Complete bibliography with access dates
+- **Confidence Assessment**: Counts of high/medium/low confidence claims
+- **Gaps & Limitations**: Explicit acknowledgment of research boundaries
+
+Final analysis includes:
+- **Research Methodology**: Assistants used, sources reviewed, confidence distribution
+- **Complete Bibliography**: All sources from all assistants, deduplicated
+- **Limitations & Gaps**: Identified weaknesses in available research
+- **Areas of Uncertainty**: Claims marked with low confidence or conflicts
 
 ## 📋 Example Outputs
 
@@ -152,13 +223,57 @@ Quick examples of queries Claude handles well:
 - **Historical**: "What led to the fall of the Roman Empire?"
 - **Local**: "What's the 5-year outlook for Austin, TX?"
 
+## 💡 When to Use Each Depth Mode
+
+### Quick Mode (~10 min)
+**Use when you need:**
+- Quick market overview
+- Initial feasibility assessment
+- Basic technology comparison
+- Preliminary understanding of a topic
+
+**Example queries:**
+- "What is WebAssembly?"
+- "Quick comparison: React vs Vue"
+- "Latest trends in DevOps"
+
+### Standard Mode (~20 min, Default)
+**Use when you need:**
+- Comprehensive research
+- Multi-dimensional analysis
+- Informed decision-making
+- Deep understanding of a topic
+
+**Example queries:**
+- "Should we migrate from MongoDB to PostgreSQL?"
+- "How will AI impact healthcare?"
+- "5-year outlook for Austin, TX"
+
+### Deep Mode (~40 min)
+**Use when you need:**
+- Critical business decisions
+- High-stakes analysis
+- Cross-verified facts
+- Comprehensive due diligence
+
+**Example queries:**
+- "Evaluate acquiring Company X for $10M"
+- "Should we rewrite our platform in Rust?"
+- "Comprehensive security audit of our architecture"
+
 ## 🔧 Configuration
 
-The script is intentionally minimal. Claude handles:
-- Determining optimal assistant count
-- Creating research questions
-- Assigning roles and perspectives
-- Adapting to query complexity
+The script handles configuration automatically based on depth:
+- **Quick**: 2-3 assistants, 300-500 words, no verification
+- **Standard**: 4-6 assistants, 500-1000 words, no verification
+- **Deep**: 6-8 assistants, 1000-2000 words, **verification required**
+
+Claude autonomously:
+- Determines exact assistant count within range
+- Creates focused research questions
+- Assigns specialized roles and perspectives
+- Applies quality controls and citations
+- Cross-verifies claims (deep mode)
 
 ## 🚀 Advanced Features
 
